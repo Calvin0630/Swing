@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 1587799257}
   camTransform: {fileID: 506421179}
+  invertY: 1
   cursorMode: 1
 --- !u!4 &506421179
 Transform:
@@ -239,8 +240,8 @@ GameObject:
   - component: {fileID: 1587799260}
   - component: {fileID: 1587799259}
   - component: {fileID: 1587799258}
-  - component: {fileID: 1587799261}
   - component: {fileID: 1587799256}
+  - component: {fileID: 1587799261}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32646792b851b5f43bb9b2a661745603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 10
 --- !u!4 &1587799257
 Transform:
   m_ObjectHideFlags: 0
@@ -310,7 +312,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1587799255}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &1587799260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -326,8 +328,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1587799261
-BoxCollider:
+--- !u!135 &1587799261
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -336,7 +338,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1619192351
 GameObject:
