@@ -12,8 +12,8 @@ public class WorldGenerator : MonoBehaviour {
     GameObject buildings;
 	// Use this for initialization
 	void Start () {
-        groundPrefab = Resources.Load("Prefab/Ground") as GameObject;
-        buildingPrefab = Resources.Load("Prefab/Building") as GameObject;
+        groundPrefab = Resources.Load("Prefab/Environment/Ground") as GameObject;
+        buildingPrefab = Resources.Load("Prefab/Environment/Building") as GameObject;
         ground = new GameObject();
         ground.name = "Ground";
         ground.transform.SetParent(this.transform);
