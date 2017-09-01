@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour {
     //the point where the "web" hits the building. the hit distance is zero if it's not attached.
     RaycastHit grapplingPoint;
     public float grapplingForce;
+    LineRenderer lineRenderer;
     //a line renderer that 
 	// Use this for initialization
 	void Start () {
         rBody = this.GetComponent<Rigidbody>();
         projectilePrefab = Resources.Load("Prefab/Projectile") as GameObject;
+        lineRenderer = GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -52,8 +54,11 @@ public class PlayerController : MonoBehaviour {
             clone.GetComponent<Rigidbody>().AddForce((ThirdPersonCamera.cameraDir + (0.33f *Vector3.up)) * 50);
             Debug.DrawRay(transform.position, grapplingPoint.point, Color.green);
             rBody.AddForce((grapplingPoint.point-transform.position).normalized*grapplingForce);
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPositions(new Vector3[]{grapplingPoint.point, transform.position});
         }
         if(Input.GetButtonUp("Fire1")) {
+            lineRenderer.positionCount = 0;
             grapplingPoint = new RaycastHit();
         }
 	}
