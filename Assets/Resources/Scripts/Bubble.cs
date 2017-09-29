@@ -7,7 +7,7 @@ public class Bubble : MonoBehaviour {
     GameObject player;
 	// Use this for initialization
 	void Start () {
-        playerRigidbody = transform.GetComponentInParent<Rigidbody>();
+        playerRigidbody = transform.parent.GetComponent<Rigidbody>();
         player = transform.parent.gameObject;
 	}
 	
@@ -16,11 +16,12 @@ public class Bubble : MonoBehaviour {
         transform.position = player.transform.position;
 	}
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
 
-        //if (LayerMask.NameToLayer("Environment") == other.gameObject.layer) print(other.name);
+        //if there is a building
         if(other.tag == "Building") {
-            playerRigidbody.AddForce((transform.position - other.gameObject.transform.position).normalized*30);
+            //add a force away from the building
+            playerRigidbody.AddForce(((transform.position - other.gameObject.transform.position).normalized)*5);
         }
     }
 }

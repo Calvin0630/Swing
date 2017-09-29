@@ -42,16 +42,21 @@ public class PlayerController : MonoBehaviour {
         
 
         if(Input.GetButtonDown("Fire1")) {
+            /*
             Vector3 shotDir = (ThirdPersonCamera.cameraDir + (0.33f * Vector3.up));
             if (Physics.Raycast(transform.position, shotDir, out grapplingPoint, 2000)) {
                 
             }
+            */
+            GameObject building = GetComponentInChildren<BuildingDecider>().GetBuilding();
+            Vector3 shotDir = building.transform.position - gameObject.transform.position;
+            if (Physics.Raycast(transform.position, shotDir, out grapplingPoint, 2000)) {
+                
+            }
         }
-        if (Input.GetButton("Fire1")) {
-            GameObject clone = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            clone.name = "projectile";
-            clone.transform.SetParent(this.transform);
-            clone.GetComponent<Rigidbody>().AddForce((ThirdPersonCamera.cameraDir + (0.33f *Vector3.up)) * 50);
+        //if the mouse button is held and it hit an object
+        //(grapplingPoint.point is zero if it misses)
+        if (Input.GetButton("Fire1") && !(grapplingPoint.point == Vector3.zero)) {
             Debug.DrawRay(transform.position, grapplingPoint.point, Color.green);
             rBody.AddForce((grapplingPoint.point-transform.position).normalized*grapplingForce);
             lineRenderer.positionCount = 2;
